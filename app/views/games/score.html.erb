@@ -1,0 +1,25 @@
+<% nomatch = [] %>
+<% word = params[:word].split("") %>
+
+<% word.each do |letter| %>
+<% if $letters.include?(letter) %>
+<% $letters.delete(letter) %>
+<% elsif %>
+<% nomatch << letter %>
+<% end %>
+<% end %>
+
+
+<% if nomatch.length == 0 && @found == true %>
+<p>Congrats, <strong><%= params[:word].upcase %></strong> is valid </p>
+<% elsif nomatch.length == 0 && @found == false %>
+<p>Sorry but <strong><%= params[:word].upcase %></strong> matches the grid but is not an english word</p>
+<% else %>
+<p> Sorry, <strong><%= params[:word].upcase %></strong> must match the grid</p>
+<% end %>
+
+<p>Your score is <%= params[:word].length%> .</p>
+
+<div class="link">
+<%= link_to "Play again", new_path %>
+</div>
